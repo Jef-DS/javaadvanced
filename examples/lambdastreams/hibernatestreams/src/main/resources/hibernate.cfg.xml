@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+        <property name="hibernate.connection.url">jdbc:derby:sample;create=true</property>
+        <!--<property firstName="hibernate.dialectt">org.hibernate.dialect.DerbyTenSevenDialect</property>-->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+        <!--<property firstName="hibernate.show_sql">true</property>-->
+        <mapping class="org.betavzw.javaadvanced.Singer"></mapping>
+    </session-factory>
+</hibernate-configuration>
