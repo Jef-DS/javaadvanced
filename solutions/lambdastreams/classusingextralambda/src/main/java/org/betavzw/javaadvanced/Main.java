@@ -36,7 +36,8 @@ interface Executor{
 class MenuList{
     private List<Menu> menus = new ArrayList<>();
     public void addMenu(String title, Executor handler) {
-        Supplier<String> sup = () ->  title; // this ois not right but what is?
+        int index = menus.size() + 1;
+        Supplier<String> sup = () -> (index) + ". " + title;
         Menu m = new Menu(sup, handler);
         menus.add(m);
     }

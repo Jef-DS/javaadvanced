@@ -35,6 +35,7 @@ public class Enums {
 
     }
 }
+enum Sengines {GOOGLE, BING, EVI}
 enum SearchEngines {
     GOOGLE("www.google.be"),
     BING("www.bing.be"),

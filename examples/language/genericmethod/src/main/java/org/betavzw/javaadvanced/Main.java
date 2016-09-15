@@ -1,6 +1,7 @@
 package org.betavzw.javaadvanced;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Collection;
  */
 public class Main {
     public static void main(String[] args) {
+        Arrays.as
         Object[] oa = new Object[100];
         Collection<Object> co = new ArrayList<Object>();
 // T inferred to be Object

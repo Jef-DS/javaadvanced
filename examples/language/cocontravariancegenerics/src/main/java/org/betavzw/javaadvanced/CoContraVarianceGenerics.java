@@ -17,7 +17,6 @@ public class CoContraVarianceGenerics {
     public static void printAnimalFromShelter(Shelter<? extends Animal> shelter) {
         Animal a = shelter.getAnimai();
         System.out.println(a);
-
     }
 }
 class Animal {
@@ -89,4 +88,5 @@ class Shelter2<T, U extends T> {
     public void setAnimal(U animal){
         this.animal = animal;
     }
+
 }

@@ -45,6 +45,9 @@ public class Main {
                     .collect(Collectors.toList());
         }
         singerList.forEach(s -> System.out.printf("%d:%s:%s:%s\n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate()));
-
+        Path p = Paths.get("..");
+        p = p.toAbsolutePath();
+        p = p.normalize();
+        System.out.println(p);
     }
 }

@@ -5,6 +5,6 @@ package org.betavzw.javaadvanced;
  */
 public class TestClass {
     public void method(@NonNegative Integer number, Integer number2){
-        System.out.println("method: "+number + ", " + number);
+        System.out.println("method: "+number + ", " + number2);
     }
 }

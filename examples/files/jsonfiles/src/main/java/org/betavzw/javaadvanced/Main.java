@@ -34,6 +34,8 @@ public class Main {
                 new Singer(6, "Marthe", "De Pillecyn", LocalDate.of(1996, Month.JULY, 16)),
                 new Singer(7, "Klaasje", "Meijer", LocalDate.of(1995, Month.MARCH, 2))
         };
+        JsonArrayBuilder b = Json.createArrayBuilder();
+
         Collector<JsonObject, ?, JsonArrayBuilder> jsonCollector
                 = Collector.of(Json::createArrayBuilder, JsonArrayBuilder::add,
                 (left, right) -> {

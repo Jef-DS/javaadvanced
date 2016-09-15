@@ -17,7 +17,7 @@ public class Main {
         File f = new File("target/classes/earth-zoom.jpg");
         BufferedImage img = ImageIO.read(f);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "jgp", baos);
+        ImageIO.write(img, "jpg", baos);
         int width = img.getWidth();
         int height = img.getHeight();
         System.out.printf("Image (%d, %d) is loaded.\n", width, height);
@@ -27,15 +27,16 @@ public class Main {
             int row = i / width;
             int col = i - (i/width * width);
             int pixel = img.getRGB(col, row);
-            int a = pixel / (255*255*255);
-            int arest = a * 255 * 255 * 255;
-            int r = (pixel - arest)/(255 * 255);
-            int rrest = r * 255 * 255;
-            int g = (pixel - arest - rrest)/255;
-            int grest = g * 255;
+            int a = pixel / (256*256*256);
+            int arest = a * 256 * 256 * 256;
+            int r = (pixel - arest)/(256 * 256);
+            int rrest = r * 256 * 256;
+            int g = (pixel - arest - rrest)/256;
+            int grest = g * 256;
             int b = pixel - arest - rrest - grest;
             int avg = (r+g+b )/3;
-            int newPixel = a*255*255*255 + r * 255*255 + g*255 + b;
+            //int newPixel = a*255*255*255 + r * 255*255 + g*255 + b;
+            int newPixel = a*256*256*256 + avg * 256*256 + avg*256 + avg;
             img.setRGB(col, row, newPixel);
 
         });*/

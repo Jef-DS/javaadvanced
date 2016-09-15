@@ -6,21 +6,29 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 /**
  * Created by Jef on 7/09/2016.
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileFinder csvFinder = new FileFinder("**.csv");
-        Path srcRoot = Paths.get("..").normalize();
-        Files.walkFileTree(srcRoot, csvFinder);
         List<Singer> singers = new ArrayList<>();
+        FileFinder csvFinder = new FileFinder("**.csv", p ->{
+                try(Stream<String> lines = Files.lines(p)){
+                    lines.forEach( line -> {
+                        Singer s = Singer.createSinger(line);
+                        singers.add(s);
+                    });
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        Path srcRoot = Paths.get(".").toAbsolutePath().normalize();
+        System.out.println("Searching in " + srcRoot);
+        Files.walkFileTree(srcRoot, csvFinder);
         for(Path p: csvFinder){
-            Files.lines(p).forEach( line -> {
-                Singer s = Singer.createSinger(line);
-                singers.add(s);
-            });
         }
         for(Singer s: singers) {
             System.out.printf("%s %s \n", s.getFirstname(), s.getLastname());
@@ -31,14 +39,16 @@ public class Main {
 class FileFinder extends SimpleFileVisitor<Path> implements Iterable<Path> {
     private PathMatcher pathMatcher;
     private List<Path> foundPaths = new ArrayList<>();
-    public FileFinder(String pattern){
+    private Consumer<Path> consumer;
+    public FileFinder(String pattern, Consumer<Path> consumer){
         pathMatcher = FileSystems.getDefault().getPathMatcher("glob:"+pattern);
+        this.consumer = consumer;
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (file != null && pathMatcher.matches(file)) {
-            foundPaths.add(file);
+            consumer.accept(file);
         }
         return FileVisitResult.CONTINUE;
     }

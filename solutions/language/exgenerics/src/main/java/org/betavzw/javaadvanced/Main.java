@@ -1,21 +1,22 @@
 package org.betavzw.javaadvanced;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Jef on 9/09/2016.
  */
 public class Main {
     public static void main(String[] args) {
-        String[] names = {"Karen", "Kristel", "Kathleen", "Hanne", "Marhte", "Klaasje"};
+        String[] names = {"Karen", "Kristel", "Kathleen", "Hanne", "Marthe", "Klaasje"};
         Table<String> table = new Table<>(2, 3);
         for (int i=0; i<2;i++){
             for (int j=0;j<3;j++){
                 table.setElement(names[i*3 + j], i, j);
             }
         }
-        table.deleteCol(2);
-        table.deleteRow(1);
+        table.deleteCol(0);
+        table.deleteRow(0);
         for (int row=0; row<table.getNumRows();row++) {
             for (int col=0; col< table.getNumCols();col++){
                 System.out.print(table.getElement(row, col) + "\t");
@@ -35,9 +36,6 @@ class Table<T> {
             for (int j=0;j<cols;j++){
                 l.add(null);
             }
-        }
-        for(ArrayList<T> l: table){
-            l = new ArrayList<>(cols);
         }
     }
     public Table(){

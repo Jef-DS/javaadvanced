@@ -14,7 +14,7 @@ public class ExForVarEnum {
         Product p2 = new Product(VatRates.LOW_RATE_1, "Paper", new BigDecimal("1.6"));
         Product p3 = new Product(VatRates.LOW_RATE_2, "Java Advanced", new BigDecimal("38"));
         ShoppingBasket basket = new ShoppingBasket(p1, p2, p3);
-        for(Product p: basket){
+        for (Product p : basket) {
             System.out.printf("%s costs  € %.2f VAT excl (VAT: € %.2f)\n", p.getName(), p.getPrice(), p.getVatPrice());
         }
         System.out.printf("Total price %.2f (VAT excl), %.2f (VAT incl)", basket.getTotalPriceVATExcl(), basket.getTotalPriceVATIncl());
@@ -34,9 +34,10 @@ class ShoppingBasket implements Iterable<Product> {
     public Iterator<Product> iterator() {
         return Arrays.asList(products).iterator();
     }
-    public BigDecimal getTotalPriceVATExcl(){
+
+    public BigDecimal getTotalPriceVATExcl() {
         BigDecimal total = BigDecimal.ZERO;
-        for(Product p: this){
+        for (Product p : this) {
             total = total.add(p.getPrice());
         }
         return total;
@@ -44,7 +45,7 @@ class ShoppingBasket implements Iterable<Product> {
 
     public BigDecimal getTotalPriceVATIncl() {
         BigDecimal total = BigDecimal.ZERO;
-        for(Product p: this){
+        for (Product p : this) {
             BigDecimal subtotal = p.getPrice().add(p.getVatPrice());
             total = total.add(subtotal);
         }
@@ -86,7 +87,8 @@ class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-    public BigDecimal getVatPrice(){
+
+    public BigDecimal getVatPrice() {
         return price.multiply(vat.getRate());
     }
 }

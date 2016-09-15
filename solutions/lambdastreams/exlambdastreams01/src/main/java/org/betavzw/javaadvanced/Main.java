@@ -1,8 +1,9 @@
 package org.betavzw.javaadvanced;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -13,16 +14,9 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
         Singer[] singers= {new Singer("Karen", "Daemen"), new Singer("Kristel", "Verbeke"), new Singer("Kathleen", "Aerts")};
-        String result = IntStream.range(0, singers.length).mapToObj(index -> {
-            String s= "";
-            if (index == 0) s =  singers[index].getFirstName();
-            if (index == singers.length-1) s =  " and " + singers[index].getFirstName();
-            if (index > 0 && index < singers.length -1) s = ", " + singers[index].getFirstName();
-            System.out.println("Index: " + index + ", Name: " + s);
-            return s;
-        }).reduce("", (a, b) -> a + b);
+        String result = Arrays.stream(singers).limit(singers.length-1).map(Singer::getFirstName)
+                .collect(Collectors.joining(", ")).concat(" and ").concat(singers[singers.length-1].getFirstName());
         System.out.println(result);
-
     }
 }
 class Singer{

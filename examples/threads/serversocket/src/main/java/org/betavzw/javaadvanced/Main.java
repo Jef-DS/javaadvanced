@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -16,7 +16,7 @@ public class Main {
     private static final int PORT_NUMBER=4242;
     public static void main(String[] args) throws IOException {
 
-        Executor executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         try(ServerSocket socket = new ServerSocket(PORT_NUMBER)){
             while(true) {
                 Socket clientSocket = socket.accept();

@@ -9,6 +9,7 @@ import java.util.Comparator;
 public class Main {
     public static void main(String[] args) {
         String[] names = {"Karen", "Kristel", "Kathleen"};
+        Arrays.sort(names, Comparator.comparing(s -> s.length()));
         Arrays.sort(names, Comparator.comparing(String::length));
         for(String n: names) {
             System.out.println(n);
