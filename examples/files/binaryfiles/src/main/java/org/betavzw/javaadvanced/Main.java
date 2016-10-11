@@ -46,19 +46,19 @@ public class Main {
         }catch(EOFException ex) {
             System.out.println("End of file reached");
         }
-        singerList.forEach(s -> System.out.printf("%d: %s %s %s\n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate()));
+        singerList.forEach(s -> System.out.printf("%d: %s %s %s%n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate()));
 
     }
     private static String readString(DataInputStream in, int max_len) throws IOException {
         char[] chars = new char[max_len];
         int charPosition = 0;
         char character = in.readChar();
-        while (character != 0){
+        while (character != 0 && charPosition < max_len){
             chars[charPosition] = character;
             charPosition++;
             character = in.readChar();
         }
-        in.skipBytes((NAME_MAX_LENGTH -charPosition - 1)*2);
+        in.skipBytes((max_len -charPosition - 1)*2);
         String text = String.valueOf(chars, 0, charPosition);
         return text;
     }

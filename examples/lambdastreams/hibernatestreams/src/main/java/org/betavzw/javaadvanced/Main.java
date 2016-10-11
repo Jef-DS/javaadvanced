@@ -29,7 +29,8 @@ public class Main {
             queryDbWithStreams(sessionFactory);
             try(Session session = sessionFactory.openSession()){
                 Stream<Singer> singers = session.createQuery("SELECT s FROM Singer s", Singer.class).stream();
-                singers.map(s -> String.format("%1$s was born on %2$td-%2$tm-%2$tY and is %3$d years old", s.getFirstName(), s.getBirthdate(), s.getAge()) )
+                singers.filter(s -> s.getFirstName().startsWith("K"))
+                        .map(s -> String.format("%1$s was born on %2$td-%2$tm-%2$tY and is %3$d years old", s.getFirstName(), s.getBirthdate(), s.getAge()) )
                         .forEach(m -> System.out.println(m));
                 Stream<Object[]> singers2 = session.createQuery("SELECT s.firstName, s.birthdate FROM Singer s").stream();
                 singers2.map(b -> String.format("%s was born on %2$td-%2$tm-%2$tY", (String) b[0], (LocalDate)b[1]))

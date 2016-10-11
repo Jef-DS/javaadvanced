@@ -14,7 +14,7 @@ public class Enums {
         SearchEngines[] values2 = SearchEngines.values();
         values2[0] = values2[1];
         for(int i=0;i<values.length;i++) {
-            System.out.printf("\t%d) %s\n", i+1, values[i]);
+            System.out.printf("\t%d) %s%n", i+1, values[i]);
         }
         System.out.print("Your choice: ");
         int choice = Integer.parseInt(scanner.nextLine());
@@ -31,7 +31,7 @@ public class Enums {
                 break;
         }
         String url = engine.getURL();
-        System.out.printf("Its URL is %s.\n", url);
+        System.out.printf("Its URL is %s.%n", url);
 
     }
 }

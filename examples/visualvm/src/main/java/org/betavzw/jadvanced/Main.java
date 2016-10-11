@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     private static final int ITERATIONS = 100;
     private static final int LENGTH = 400000;
-    private static final int RATIO=20;
+    private static final int RATIO=4;
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 

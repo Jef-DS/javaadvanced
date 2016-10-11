@@ -34,7 +34,7 @@ public class CoContraVarianceArrays {
         Object o = objects[0];
         System.out.println("First object is "+o);
         //writes give error at runtime
-        //objects[0] = LocalDate.now();
+        objects[0] = LocalDate.now();
     }
 
 

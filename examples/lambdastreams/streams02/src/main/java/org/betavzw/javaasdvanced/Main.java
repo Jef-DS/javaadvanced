@@ -2,6 +2,8 @@ package org.betavzw.javaasdvanced;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -11,8 +13,8 @@ import static java.util.stream.Collectors.toList;
 public class Main {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-        List<Integer> twoEvenSquares =
-                numbers.stream()
+        //List<Integer> twoEvenSquares =
+         Stream<Integer> is = numbers.stream()
                         .filter(n -> {
                             System.out.println("filtering " + n);
                             return n % 2 == 0;
@@ -21,7 +23,9 @@ public class Main {
                             System.out.println("mapping " + n);
                             return n * n;
                         })
-                        .limit(2)
-                        .collect(toList());
+                        .limit(2);
+          //              .collect(toList());
+        System.out.println("Hier voeren we uit");
+        is.collect(toList());
     }
 }

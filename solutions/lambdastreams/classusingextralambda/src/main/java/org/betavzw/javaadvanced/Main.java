@@ -37,14 +37,14 @@ class MenuList{
     private List<Menu> menus = new ArrayList<>();
     public void addMenu(String title, Executor handler) {
         int index = menus.size() + 1;
-        Supplier<String> sup = () -> (index) + ". " + title;
-        Menu m = new Menu(sup, handler);
+        Supplier<String> sup = ()-> index + ". " + title;
+       Menu m = new Menu(sup, handler);
         menus.add(m);
     }
     public void display(){
         System.out.println("Choose item: ");
         for (int i= 0; i< menus.size();i++){
-            System.out.println(menus.get(i).getTitle());
+            System.out.println( menus.get(i).getTitle());
         }
     }
     public void executeMenu(int index){

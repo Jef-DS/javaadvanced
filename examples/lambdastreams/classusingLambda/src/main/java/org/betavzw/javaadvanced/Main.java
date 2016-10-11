@@ -40,7 +40,7 @@ class MenuList{
     public void display(){
         System.out.println("Choose item: ");
         for (int i= 0; i< menus.size();i++){
-            System.out.printf("\t%d. %s\n", i+1, menus.get(i).getTitle());
+            System.out.printf("\t%d. %s%n", i+1, menus.get(i).getTitle());
         }
     }
     public void executeMenu(int index){

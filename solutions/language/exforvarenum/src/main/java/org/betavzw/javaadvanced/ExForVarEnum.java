@@ -15,7 +15,7 @@ public class ExForVarEnum {
         Product p3 = new Product(VatRates.LOW_RATE_2, "Java Advanced", new BigDecimal("38"));
         ShoppingBasket basket = new ShoppingBasket(p1, p2, p3);
         for (Product p : basket) {
-            System.out.printf("%s costs  € %.2f VAT excl (VAT: € %.2f)\n", p.getName(), p.getPrice(), p.getVatPrice());
+            System.out.printf("%s costs  € %.2f VAT excl (VAT: € %.2f)%n", p.getName(), p.getPrice(), p.getVatPrice());
         }
         System.out.printf("Total price %.2f (VAT excl), %.2f (VAT incl)", basket.getTotalPriceVATExcl(), basket.getTotalPriceVATIncl());
     }
@@ -23,7 +23,7 @@ public class ExForVarEnum {
 
 class ShoppingBasket implements Iterable<Product> {
 
-    private static Product[] products;
+    private final Product[] products;
 
     public ShoppingBasket(Product... p) {
         products = new Product[p.length];

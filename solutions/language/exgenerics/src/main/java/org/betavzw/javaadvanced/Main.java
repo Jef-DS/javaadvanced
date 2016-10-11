@@ -15,8 +15,8 @@ public class Main {
                 table.setElement(names[i*3 + j], i, j);
             }
         }
-        table.deleteCol(0);
-        table.deleteRow(0);
+        table.deleteCol(2);
+        table.deleteRow(1);
         for (int row=0; row<table.getNumRows();row++) {
             for (int col=0; col< table.getNumCols();col++){
                 System.out.print(table.getElement(row, col) + "\t");
@@ -29,9 +29,9 @@ public class Main {
 class Table<T> {
     private ArrayList<ArrayList<T>> table;
     public Table(int rows, int cols) {
-        table = new ArrayList<>(rows);
+        table = new ArrayList<>();
         for (int i=0;i< rows; i++){
-            ArrayList<T> l = new ArrayList<T>(cols);
+            ArrayList<T> l = new ArrayList<T>();
             table.add(l);
             for (int j=0;j<cols;j++){
                 l.add(null);

@@ -10,7 +10,7 @@ import java.util.Collection;
 /**
  * Created by Jef on 1/09/2016.
  */
-@SuppressWarnings("unchecked")
+//@SuppressWarnings("unchecked")
 public class Main {
     public static void main(String[] args) {
         Collection<Part> parts = new ArrayList<>();

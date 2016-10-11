@@ -35,7 +35,15 @@ public class Main {
             while ((regel = br.readLine()) != null){
                 String[] columns = regel.split(":");
                 Singer s = new Singer(Integer.parseInt(columns[0]), columns[1], columns[2], LocalDate.parse(columns[3]));
-                System.out.printf("%d:%s:%s:%s\n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate());
+                System.out.printf("%d:%s:%s:%s%n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate());
+            }
+        }
+        try(BufferedReader br = Files.newBufferedReader(Paths.get("K3.txt"))){
+            String regel;
+            while ((regel = br.readLine()) != null){
+                String[] columns = regel.split(":");
+                Singer s = new Singer(Integer.parseInt(columns[0]), columns[1], columns[2], LocalDate.parse(columns[3]));
+                System.out.printf("%d:%s:%s:%s%n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate());
             }
         }
         List<Singer> singerList=null;;
@@ -44,10 +52,13 @@ public class Main {
                     .map(arr -> new Singer(Integer.parseInt(arr[0]), arr[1], arr[2], LocalDate.parse(arr[3])))
                     .collect(Collectors.toList());
         }
-        singerList.forEach(s -> System.out.printf("%d:%s:%s:%s\n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate()));
-        Path p = Paths.get("..");
+        singerList.forEach(s -> System.out.printf("%d:%s:%s:%s%n", s.getId(), s.getFirstName(), s.getLastName(), s.getBirthdate()));
+        Path p = Paths.get("..", "ietanders");
         p = p.toAbsolutePath();
+        System.out.println(p);
         p = p.normalize();
+        System.out.println(p);
+        p =p.toRealPath();
         System.out.println(p);
     }
 }

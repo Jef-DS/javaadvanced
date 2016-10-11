@@ -8,6 +8,7 @@ public class CoContraVarianceGenerics {
         Shelter<Bird> birdshelter = new Shelter<>();
         saveAnimalInShelter(birdshelter);
         printAnimalFromShelter(birdshelter);
+        Shelter2<Bird, Chicken> birdchickenshelter = new Shelter2<>();
     }
 
     public static void saveAnimalInShelter(Shelter<? super Chicken> shelter) {

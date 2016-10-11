@@ -24,11 +24,11 @@ public class Main {
         };
         //calculate average of age
         double averageAge = Arrays.stream(singers).collect(Collectors.averagingInt(Singer::getAge));
-        System.out.printf("The average age of all singers is %.1f\n", averageAge);
+        System.out.printf("The average age of all singers is %.1f%n", averageAge);
         //of course we can combine it with a filter
         double averageAgeK = Arrays.stream(singers).filter(s -> s.getFirstName().startsWith("K"))
                 .collect(Collectors.averagingInt(Singer::getAge));
-        System.out.printf("The average age of all singers whose name starts with a 'K' is %.1f\n", averageAgeK);
+        System.out.printf("The average age of all singers whose name starts with a 'K' is %.1f%n", averageAgeK);
         //there is a summary object that accumulates the count, min, max, sum and average
         IntSummaryStatistics summ = Arrays.stream(singers).filter(s -> s.getFirstName().startsWith("K")).collect(Collectors.summarizingInt(s -> s.getAge()));
         System.out.println(summ);

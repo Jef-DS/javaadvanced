@@ -20,12 +20,12 @@ public class Main {
         ImageIO.write(img, "jpg", baos);
         int width = img.getWidth();
         int height = img.getHeight();
-        System.out.printf("Image (%d, %d) is loaded.\n", width, height);
+        System.out.printf("Image (%d, %d) is loaded.%n", width, height);
         long start = System.nanoTime();
-        /*IntStream.range(0, width * height).parallel().forEach( i ->
+        IntStream.range(0, width * height).forEach( i ->
         {
             int row = i / width;
-            int col = i - (i/width * width);
+            int col = i - i/ width * width;//i % width;
             int pixel = img.getRGB(col, row);
             int a = pixel / (256*256*256);
             int arest = a * 256 * 256 * 256;
@@ -35,12 +35,11 @@ public class Main {
             int grest = g * 256;
             int b = pixel - arest - rrest - grest;
             int avg = (r+g+b )/3;
-            //int newPixel = a*255*255*255 + r * 255*255 + g*255 + b;
             int newPixel = a*256*256*256 + avg * 256*256 + avg*256 + avg;
             img.setRGB(col, row, newPixel);
 
-        });*/
-        for (int i=0;i<height; i++){
+        });
+        /*for (int i=0;i<height; i++){
             for(int j=0;j<width; j++) {
                 int pixel = img.getRGB(j, i);
                 int a = (pixel>>24)&0xff;
@@ -51,9 +50,9 @@ public class Main {
                 int newPixel = (a<<24) | (avg<<16) | avg<<8 | avg;
                 img.setRGB(j, i, newPixel);
             }
-        }
+        }*/
         long end = System.nanoTime();
-        System.out.printf("this took %d milliseonds.\n ", (end-start)/1000000);
+        System.out.printf("this took %d milliseonds.%n ", (end-start)/1000000);
         File fout = new File("target/classes/earth-zoom_gray.jpg");
         ImageIO.write(img, "jpg", fout);
 

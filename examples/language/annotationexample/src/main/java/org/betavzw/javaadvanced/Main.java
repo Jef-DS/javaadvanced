@@ -14,7 +14,7 @@ import java.lang.reflect.Parameter;
 public class Main {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         TestClass tc = new TestClass();
-        saveCall(tc, -5, -5);
+        saveCall(tc, 5, -5);
     }
     public static void saveCall(Object o, Integer ... args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Class c = o.getClass();

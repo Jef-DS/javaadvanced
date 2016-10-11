@@ -21,26 +21,39 @@ public class Main {
                         Singer s = Singer.createSinger(line);
                         singers.add(s);
                     });
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         });
         Path srcRoot = Paths.get(".").toAbsolutePath().normalize();
         System.out.println("Searching in " + srcRoot);
         Files.walkFileTree(srcRoot, csvFinder);
-        for(Path p: csvFinder){
-        }
         for(Singer s: singers) {
-            System.out.printf("%s %s \n", s.getFirstname(), s.getLastname());
+            System.out.printf("%s %s %n", s.getFirstname(), s.getLastname());
         }
+
+        System.out.println("====");
+        Files.find(srcRoot, Integer.MAX_VALUE,(path, attrs) -> attrs.isRegularFile() && path.toString().endsWith(".csv"))
+                .forEach(p -> {
+                    try {
+                        Files.lines(p).forEach(line ->
+                        {
+                            Singer s = Singer.createSinger(line);
+                            System.out.printf("%s %s %n", s.getFirstname(), s.getLastname());
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 }
 
-class FileFinder extends SimpleFileVisitor<Path> implements Iterable<Path> {
+interface MyConsumer{
+    void accept(Path p) throws IOException;
+}
+class FileFinder extends SimpleFileVisitor<Path>  {
     private PathMatcher pathMatcher;
-    private List<Path> foundPaths = new ArrayList<>();
-    private Consumer<Path> consumer;
-    public FileFinder(String pattern, Consumer<Path> consumer){
+    //private Consumer<Path> consumer;
+    private MyConsumer consumer;
+    public FileFinder(String pattern, MyConsumer consumer){
         pathMatcher = FileSystems.getDefault().getPathMatcher("glob:"+pattern);
         this.consumer = consumer;
     }
@@ -53,10 +66,6 @@ class FileFinder extends SimpleFileVisitor<Path> implements Iterable<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    @Override
-    public Iterator<Path> iterator() {
-        return foundPaths.iterator();
-    }
 }
 class Singer{
     private String firstname;

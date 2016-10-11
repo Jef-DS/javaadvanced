@@ -21,6 +21,6 @@ public class StaticImport {
         double number = (Double)nf.parse(sNumber);
         //I can imagine what sqrt does.
         double root = sqrt(number);
-        System.out.printf("The square root of %.2f is %f.\n", number, root);
+        System.out.printf("The square root of %.2f is %f.%n", number, root);
     }
 }

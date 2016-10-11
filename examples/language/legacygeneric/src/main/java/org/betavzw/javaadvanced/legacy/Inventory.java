@@ -10,6 +10,7 @@ public class Inventory {
     private Collection parts = new ArrayList();
     public void addCollection(Collection parts){
         this.parts.addAll(parts);
+        //this.parts.add("K3");
     }
     public Collection getCollection(){
         return this.parts;

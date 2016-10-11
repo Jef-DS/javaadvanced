@@ -9,7 +9,6 @@ import java.util.Collection;
  */
 public class Main {
     public static void main(String[] args) {
-        Arrays.as
         Object[] oa = new Object[100];
         Collection<Object> co = new ArrayList<Object>();
 // T inferred to be Object
@@ -35,7 +34,7 @@ public class Main {
 // T inferred to be Object
         fromArrayToCollection(na, co);
 // compile-time error
-//        fromArrayToCollection(na, cs);
+       // fromArrayToCollection(na, cs);
     }
     static <T> void fromArrayToCollection(T[] a, Collection<T> c) {
         for (T o : a) {

@@ -9,7 +9,11 @@ import java.util.NoSuchElementException;
 public class Main {
     public static void main(String[] args) {
         String[] names = {"Karen", "Kristel", "Kathleen"};
-        FilteredArray fa = new FilteredArray(names, "en");
+        FilteredArray fa = new FilteredArray(names, "a");
+        for(String s: fa){
+            System.out.println(s);
+        }
+        fa.setFilter("i");
         for(String s: fa){
             System.out.println(s);
         }
@@ -20,6 +24,15 @@ public class Main {
 class FilteredArray implements Iterable<String> {
 
     private String[] list;
+
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
+
     private String filter;
 
     public FilteredArray(String[] list, String filter) {

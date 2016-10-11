@@ -97,7 +97,7 @@ public class Main {
                     eof=true;
             }
         }
-        singers2.forEach(sing -> System.out.printf("%d: %s %s %s \n", sing.getId(), sing.getFirstName(), sing.getLastName(), sing.getBirthdate()));
+        singers2.forEach(sing -> System.out.printf("%d: %s %s %s %n", sing.getId(), sing.getFirstName(), sing.getLastName(), sing.getBirthdate()));
     }
 }
 @FunctionalInterface
