@@ -1,7 +1,6 @@
 package org.betavzw.javaadvanced;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -10,9 +9,9 @@ import java.util.Iterator;
  */
 public class ExForVarEnum {
     public static void main(String[] args) {
-        Product p1 = new Product(VatRates.NORMAL_RATE, "Car", new BigDecimal("10000"));
-        Product p2 = new Product(VatRates.LOW_RATE_1, "Paper", new BigDecimal("1.6"));
-        Product p3 = new Product(VatRates.LOW_RATE_2, "Java Advanced", new BigDecimal("38"));
+        Product p1 = new Product(VatRate.NORMAL_RATE, "Car", new BigDecimal("10000"));
+        Product p2 = new Product(VatRate.LOW_RATE_1, "Paper", new BigDecimal("1.6"));
+        Product p3 = new Product(VatRate.LOW_RATE_2, "Java Advanced", new BigDecimal("38"));
         ShoppingBasket basket = new ShoppingBasket(p1, p2, p3);
         for (Product p : basket) {
             System.out.printf("%s costs  € %.2f VAT excl (VAT: € %.2f)%n", p.getName(), p.getPrice(), p.getVatPrice());
@@ -54,21 +53,21 @@ class ShoppingBasket implements Iterable<Product> {
 }
 
 class Product {
-    private VatRates vat;
+    private VatRate vat;
     private String name;
     private BigDecimal price;
 
-    public Product(VatRates vat, String name, BigDecimal price) {
+    public Product(VatRate vat, String name, BigDecimal price) {
         this.vat = vat;
         this.name = name;
         this.price = price;
     }
 
-    public VatRates getVat() {
+    public VatRate getVat() {
         return vat;
     }
 
-    public void setVat(VatRates vat) {
+    public void setVat(VatRate vat) {
         this.vat = vat;
     }
 
@@ -93,14 +92,14 @@ class Product {
     }
 }
 
-enum VatRates {
+enum VatRate {
     NORMAL_RATE("0.21"),
     LOW_RATE_1("0"),
     LOW_RATE_2("0.06"),
     LOW_RATE_3("0.12");
     private final BigDecimal _rate;
 
-    private VatRates(String rate) {
+    private VatRate(String rate) {
         this._rate = new BigDecimal(rate);
     }
 

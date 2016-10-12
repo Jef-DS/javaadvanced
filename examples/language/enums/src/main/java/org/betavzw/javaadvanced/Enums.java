@@ -9,16 +9,16 @@ public class Enums {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose search engine:");
-        SearchEngines[] values = SearchEngines.values();
+        SearchEngine[] values = SearchEngine.values();
         //Proof that .values returns a new array on each call
-        SearchEngines[] values2 = SearchEngines.values();
+        SearchEngine[] values2 = SearchEngine.values();
         values2[0] = values2[1];
         for(int i=0;i<values.length;i++) {
             System.out.printf("\t%d) %s%n", i+1, values[i]);
         }
         System.out.print("Your choice: ");
         int choice = Integer.parseInt(scanner.nextLine());
-        SearchEngines engine = values[choice-1];
+        SearchEngine engine = values[choice-1];
         switch (engine){
             case BING:
                 System.out.println("Feeling exotic?");
@@ -35,13 +35,13 @@ public class Enums {
 
     }
 }
-enum Sengines {GOOGLE, BING, EVI}
-enum SearchEngines {
+enum Sengine {GOOGLE, BING, EVI}
+enum SearchEngine {
     GOOGLE("www.google.be"),
     BING("www.bing.be"),
     EVI("www.evi.com");
     private final String _url;
-    SearchEngines(String url) {
+    SearchEngine(String url) {
         this._url = url;
     }
     public String getURL(){
