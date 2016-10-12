@@ -19,8 +19,19 @@ public class Main {
         for(int i=1;i<riders.size();i++) {
             durations.add(riders.get(i).getFinishTime().minus(riders.get(0).getFinishTime()));
         }
-        Duration finishTime = riders.get(0).getFinishTime();
-        System.out.printf("%30s %d:%2d:%2d", riders.get(0).getName(), finishTime.toHours(), finishTime.Minutes(), finishTime.getSeconds());
+        Duration finishTimeOfFirst = riders.get(0).getFinishTime();
+        finishTimeOfFirst.
+        long hours = finishTimeOfFirst.toHours();
+        long minutes = finishTimeOfFirst.toMinutes() - (hours * 60);
+        long seconds = finishTimeOfFirst.getSeconds() - (hours * 3600) - minutes *60;
+        System.out.printf("%-30s %d:%02d:%02d%n", riders.get(0).getName(), hours, minutes, seconds);
+        for (int i=1; i<riders.size();i++){
+            Duration difference = riders.get(i).getFinishTime().minus(finishTimeOfFirst);
+            hours = difference.toHours();
+            minutes = difference.toMinutes() - (hours * 60);
+            seconds = difference.getSeconds() - (hours * 3600) - (minutes * 60);
+            System.out.printf("%-28sop %d:%02d:%02d%n", riders.get(i).getName(), hours, minutes, seconds);
+        }
 
     }
 }
