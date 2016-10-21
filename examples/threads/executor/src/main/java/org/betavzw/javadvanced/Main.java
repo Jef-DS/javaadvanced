@@ -7,7 +7,7 @@ import java.util.concurrent.*;
  */
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService exec = Executors.newFixedThreadPool(2);
+        ExecutorService exec = Executors.newFixedThreadPool(4);
         long start = System.nanoTime();
         Future<Integer> f1 = exec.submit(new MyFib(39));
         Future<Integer> f2 = exec.submit(new MyFib(39));

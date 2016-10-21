@@ -22,7 +22,7 @@ public class Main {
         int height = img.getHeight();
         System.out.printf("Image (%d, %d) is loaded.%n", width, height);
         long start = System.nanoTime();
-        IntStream.range(0, width * height).forEach( i ->
+        IntStream.range(0, width * height).parallel().forEach( i ->
         {
             int row = i / width;
             int col = i - i/ width * width;//i % width;
@@ -39,7 +39,7 @@ public class Main {
             img.setRGB(col, row, newPixel);
 
         });
-        /*for (int i=0;i<height; i++){
+        for (int i=0;i<height; i++){
             for(int j=0;j<width; j++) {
                 int pixel = img.getRGB(j, i);
                 int a = (pixel>>24)&0xff;
@@ -50,7 +50,7 @@ public class Main {
                 int newPixel = (a<<24) | (avg<<16) | avg<<8 | avg;
                 img.setRGB(j, i, newPixel);
             }
-        }*/
+        }
         long end = System.nanoTime();
         System.out.printf("this took %d milliseonds.%n ", (end-start)/1000000);
         File fout = new File("target/classes/earth-zoom_gray.jpg");

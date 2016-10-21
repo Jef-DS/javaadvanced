@@ -11,7 +11,7 @@ public class Main {
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i=0;i<10000;i++) {
+                for (int i=0;i<1000;i++) {
                     teller.verhoog();
                     teller.verhoogAtomic();
                 }
@@ -20,7 +20,7 @@ public class Main {
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i=0;i<10000;i++) {
+                for (int i=0;i<1000;i++) {
                     teller.verhoog();
                     teller.verhoogAtomic();
                 }

@@ -22,19 +22,18 @@ public class Main {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         Boolean notStarted = true;
         try(ServerSocket socket = new ServerSocket(PORT_NUMBER)){
-            socket.setSoTimeout(1000);
             System.out.println("Accepting clients");
-            while(atomicTeller.intValue() > 0 || notStarted) {
+            do {
+                Socket clientSocket;
                 try {
-                    Socket clientSocket = socket.accept();
+                    clientSocket= socket.accept();
+                    socket.setSoTimeout(1000);
                     System.out.println("Client accepted");
                     atomicTeller.incrementAndGet();
-                    notStarted = false;
                     executor.execute(new ClientThread(clientSocket, () -> atomicTeller.decrementAndGet()));
                 }catch(SocketTimeoutException ex) {
-
                 }
-            }
+            }while(atomicTeller.intValue() > 0 );
             System.out.println("Server has ended");
         }
         System.out.println("Socket closed");

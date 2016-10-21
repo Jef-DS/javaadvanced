@@ -12,7 +12,7 @@ public class Main {
         t2.start();
         t1.join();
         t2.interrupt();
-        //t2.join();
+        t2.join();
         System.out.println("einde hoofd thread");
     }
 }
