@@ -1,6 +1,10 @@
 package org.betavzw.javaadvanced;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -23,7 +27,7 @@ public class Main {
 
 class FilteredArray implements Iterable<String> {
 
-    private String[] list;
+    private List<String> list;
 
     public String getFilter() {
         return filter;
@@ -36,7 +40,8 @@ class FilteredArray implements Iterable<String> {
     private String filter;
 
     public FilteredArray(String[] list, String filter) {
-        this.list = list;
+        this.list = new ArrayList(Arrays.asList(list));
+        this.list.add("test");
         this.filter = filter;
     }
 
@@ -47,20 +52,20 @@ class FilteredArray implements Iterable<String> {
             @Override
             public boolean hasNext() {
                 int localIndex = index+1;
-                while (localIndex < list.length && !list[localIndex].contains(filter)){
+                while (localIndex < list.size() && !list.get(localIndex).contains(filter)){
                     localIndex++;
                 }
-                return localIndex < list.length;
+                return localIndex < list.size();
             }
 
             @Override
             public String next() {
                 if (!hasNext()) throw new NoSuchElementException();
                 index++;
-                while(!list[index].contains(filter)) {
+                while(!list.get(index).contains(filter)) {
                     index++;
                 }
-                return list[index];
+                return list.get(index);
             }
         };
     }
